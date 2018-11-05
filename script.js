@@ -21,14 +21,14 @@ const colorRamp = [
 
 //Generate data for random instances
 //Colors, offsets, and rotations are for per instance attributes
-const MAX_INSTANCES = 8000;
+const MAX_INSTANCES = 3000;
 const positions = new Float32Array([
-  3.0, 1.8,
-  -3.0, 1.8,
-  -3.0, -1.8,
-  -3.0, -1.8,
-  3.0, -1.8,
-  3.0, 1.8
+  6.0, 3.6,
+  -6.0, 3.6,
+  -6.0, -3.6,
+  -6.0, -3.6,
+  6.0, -3.6,
+  6.0, 3.6
 ]); //triangular vertices of each instance
 const colors = new Float32Array(
 	Array
@@ -43,7 +43,7 @@ const randomNormal = d3.randomNormal(.3,.2);
 const offsets = new Float32Array(
 	Array
 		.from({length:MAX_INSTANCES})
-		.map(() => [(randomNormal() + 0.5)*canvas.height/2, Math.random()*Math.PI*2])
+		.map(() => [(randomNormal())*canvas.height/2, Math.random()*Math.PI*2])
 		.map(([r, theta]) => [r * Math.cos(theta)+canvas.width/2, r * Math.sin(theta)+canvas.height/2])
 		.reduce((acc,v) => acc.concat(v), [])
 );
@@ -59,10 +59,10 @@ const age = new Float32Array(
 )
 //Motion parameters
 const motionParams = {
-	decay:0.009,
+	decay:0.002,
 	randomWalkSpeed:0.5,
-	angularSpeed:1.0,
-	radialSpeed: 2.0
+	angularSpeed:0.4,
+	radialSpeed: 0.3
 }
 
 //Compile shaders and programs
